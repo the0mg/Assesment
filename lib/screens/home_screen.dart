@@ -110,109 +110,111 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       backgroundColor: ColorConst.headerColor,
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            const SizedBox(height: 20,),
-            for(int i=0; i<listFilter.length; i++)
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white
-                ),
-                child: Row(
-                  children: [
-                    ClipRRect(
-                     borderRadius: BorderRadius.circular(12),
-                      child: Container(
-                        color: ColorConst.headerColor,
-                        child: Image.network(
-                            '${listApi[i]['image']}',
-                          width: 80,
-                          height: 60,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              const SizedBox(height: 20,),
+              for(int i=0; i<listFilter.length; i++)
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                  padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.white
+                  ),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                       borderRadius: BorderRadius.circular(12),
+                        child: Container(
+                          color: ColorConst.headerColor,
+                          child: Image.network(
+                              '${listApi[i]['image']}',
+                            width: 80,
+                            height: 60,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 15,),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                              '${listApi[i]['title']}',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600
-                            ),
-                          ),
-                          const SizedBox(height: 20,),
-                          Text(
-                            '${listApi[i]['category']}',
-                            style: const TextStyle(
-                                color: Colors.grey,
-                              fontSize: 14
-                            ),
-                          ),
-                          const SizedBox(height: 2,),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  RatingBar.builder(
-                                    initialRating: double.parse(listApi[i]['rating']['rate'].toString()).toDouble(),
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 20,
-                                    itemBuilder: (context, _) => const Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    },
-                                  ),
-                                  const SizedBox(width: 2,),
-                                  Text(
-                                    '(${listApi[i]['rating']['rate']})',
-                                    style: const TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 13
-                                    ),
-                                  ),
-                                  const SizedBox(width: 5,),
-                                  Text(
-                                    '(${listApi[i]['rating']['count']})',
-                                    style: const TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 13
-                                    ),
-                                  ),
-                                ],
+                      const SizedBox(width: 15,),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                                '${listApi[i]['title']}',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600
                               ),
-                              Text(
-                                '＄${listApi[i]['price']}',
-                                style: const TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 15,
-                                  fontWeight: FontWeight.w600
+                            ),
+                            const SizedBox(height: 20,),
+                            Text(
+                              '${listApi[i]['category']}',
+                              style: const TextStyle(
+                                  color: Colors.grey,
+                                fontSize: 14
+                              ),
+                            ),
+                            const SizedBox(height: 2,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    RatingBar.builder(
+                                      initialRating: double.parse(listApi[i]['rating']['rate'].toString()).toDouble(),
+                                      minRating: 1,
+                                      direction: Axis.horizontal,
+                                      allowHalfRating: true,
+                                      itemCount: 5,
+                                      itemSize: 20,
+                                      itemBuilder: (context, _) => const Icon(
+                                        Icons.star,
+                                        color: Colors.amber,
+                                      ),
+                                      onRatingUpdate: (rating) {
+                                        print(rating);
+                                      },
+                                    ),
+                                    const SizedBox(width: 2,),
+                                    Text(
+                                      '(${listApi[i]['rating']['rate']})',
+                                      style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 13
+                                      ),
+                                    ),
+                                    const SizedBox(width: 5,),
+                                    Text(
+                                      '(${listApi[i]['rating']['count']})',
+                                      style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 13
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                                Text(
+                                  '＄${listApi[i]['price']}',
+                                  style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 15,
+                                    fontWeight: FontWeight.w600
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              )
-          ],
+                    ],
+                  ),
+                )
+            ],
+          ),
         ),
       ),
     );

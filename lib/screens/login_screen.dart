@@ -33,187 +33,189 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
       backgroundColor: ColorConst.headerColor,
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          children: [
-            const SizedBox(height: 20,),
-            Container(
-              width: size.width,
-              padding: const EdgeInsets.symmetric(horizontal: 15, ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Colors.white
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 0),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20,),
-                  Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 55,
-                        backgroundColor: ColorConst.headerColor,
-                        child: Image.asset(
-                          'assets/login_icon.png'
+      body: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              const SizedBox(height: 20,),
+              Container(
+                width: size.width,
+                padding: const EdgeInsets.symmetric(horizontal: 15, ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.white
+                ),
+                margin: const EdgeInsets.symmetric(horizontal: 0),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 55,
+                          backgroundColor: ColorConst.headerColor,
+                          child: Image.asset(
+                            'assets/login_icon.png'
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 5,),
-                      const Text(
-                          'Log In',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20
+                        const SizedBox(height: 5,),
+                        const Text(
+                            'Log In',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 25,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Email',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15
-                            ),
-                          ),
-                          const SizedBox(height: 10,),
-                          TxtField(
-                            ctr: mailCtr,
-                            hintTxt: 'Enter mail',
-                            txtInputType: TextInputType.emailAddress,
-                          ),
-                          const SizedBox(height: 18,),
-                          const Text(
-                            'Password',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 15
-                            ),
-                          ),
-                          const SizedBox(height: 10,),
-                          TxtField(
-                            ctr: pwdCtr,
-                            icon: Icons.lock,
-                            txtInputType: TextInputType.visiblePassword,
-                            hintTxt: 'Enter password',
-                          ),
-
-                        ],
-                      ),
-                      const SizedBox(height: 18,),
-                      Container(
-                        width: size.width,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: const [
-                            Text(
-                              'Forget Password?',
+                        const SizedBox(height: 25,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Email',
                               style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14
+                                  color: Colors.black,
+                                  fontSize: 15
                               ),
-                              textAlign: TextAlign.end,
                             ),
-                            SizedBox(width: 15,),
+                            const SizedBox(height: 10,),
+                            TxtField(
+                              ctr: mailCtr,
+                              hintTxt: 'Enter mail',
+                              txtInputType: TextInputType.emailAddress,
+                            ),
+                            const SizedBox(height: 18,),
+                            const Text(
+                              'Password',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15
+                              ),
+                            ),
+                            const SizedBox(height: 10,),
+                            TxtField(
+                              ctr: pwdCtr,
+                              icon: Icons.lock,
+                              txtInputType: TextInputType.visiblePassword,
+                              hintTxt: 'Enter password',
+                            ),
+
                           ],
                         ),
-                      ),
-                      const SizedBox(height: 22,),
-                      InkWell(
-                        onTap: () async {
-                          //check if it's null or not
-                          if(isValid()){
-                            //sign in with firebase
-                              try {
-                                final user = await _auth.signInWithEmailAndPassword(
-                                    email: mailCtr.text, password: pwdCtr.text);
-                                print('====$user');
-                                if (user != null) {
-                                  Get.to(()=>const HomeScreen());
-                                  // Navigator.pushNamed(context, 'home_screen');
-                                }else{
-
-                                }
-                              } catch (e) {
-                                var snackBar = const SnackBar(content: Text('Please register the email'));
-                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                                print(e);
-                              }
-                          }
-                        },
-                        child: Container(
-                          width: size.width/1.1,
-                          padding: const EdgeInsets.symmetric(vertical: 15, ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: ColorConst.btnColor
+                        const SizedBox(height: 18,),
+                        Container(
+                          width: size.width,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: const [
+                              Text(
+                                'Forget Password?',
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 14
+                                ),
+                                textAlign: TextAlign.end,
+                              ),
+                              SizedBox(width: 15,),
+                            ],
                           ),
-                          child: const Text(
-                            'Log In',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white
+                        ),
+                        const SizedBox(height: 22,),
+                        InkWell(
+                          onTap: () async {
+                            //check if it's null or not
+                            if(isValid()){
+                              //sign in with firebase
+                                try {
+                                  final user = await _auth.signInWithEmailAndPassword(
+                                      email: mailCtr.text, password: pwdCtr.text);
+                                  print('====$user');
+                                  if (user != null) {
+                                    Get.to(()=>const HomeScreen());
+                                    // Navigator.pushNamed(context, 'home_screen');
+                                  }else{
+
+                                  }
+                                } catch (e) {
+                                  var snackBar = const SnackBar(content: Text('Please register the email'));
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                  print(e);
+                                }
+                            }
+                          },
+                          child: Container(
+                            width: size.width/1.1,
+                            padding: const EdgeInsets.symmetric(vertical: 15, ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: ColorConst.btnColor
+                            ),
+                            child: const Text(
+                              'Log In',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 30,),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 25,),
-            InkWell(
-              onTap: () async {
-                //check if it's null or not
-                if(isValid()){
-                  //sign up with firebase
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: mailCtr.text, password: pwdCtr.text);
-                    if (newUser != null) {
-                      var snackBar = const SnackBar(content: Text('User registrated successfully'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      Get.to(()=>const HomeScreen());
-                      // Navigator.pushNamed(context, 'home_screen');
-                    }
-                  } catch (e) {
-                    var snackBar = const SnackBar(content: Text('Something went wrong'));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    print(e);
-                  }
-                }
-
-              },
-              child: Container(
-                width: size.width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'Do not have account?',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14
-                      ),
-                      textAlign: TextAlign.center,
+                        const SizedBox(height: 30,),
+                      ],
                     ),
-                    SizedBox(width: 10,),
-                    Text(
-                      'Sign up',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15
-                      ),
-                    ),
-
                   ],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 25,),
+              InkWell(
+                onTap: () async {
+                  //check if it's null or not
+                  if(isValid()){
+                    //sign up with firebase
+                    try {
+                      final newUser = await _auth.createUserWithEmailAndPassword(
+                          email: mailCtr.text, password: pwdCtr.text);
+                      if (newUser != null) {
+                        var snackBar = const SnackBar(content: Text('User registrated successfully'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        Get.to(()=>const HomeScreen());
+                        // Navigator.pushNamed(context, 'home_screen');
+                      }
+                    } catch (e) {
+                      var snackBar = const SnackBar(content: Text('Something went wrong'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      print(e);
+                    }
+                  }
+
+                },
+                child: Container(
+                  width: size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        'Do not have account?',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 14
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(width: 10,),
+                      Text(
+                        'Sign up',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 15
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
