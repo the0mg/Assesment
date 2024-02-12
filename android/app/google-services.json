@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974036341583",
+    "project_id": "assesmet-f16e5",
+    "storage_bucket": "assesmet-f16e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974036341583:android:21414dab7f82b0bb0eeb3a",
+        "android_client_info": {
+          "package_name": "com.mg.assesment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD94iRE4vBlMog9G2Xj4jGV7CvY8gnfSOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
