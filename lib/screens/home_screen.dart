@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   onSearch(String txt){
-    listFilter = listApi.where((element) => element['category'].toString().contains(txt.toString())).toList();
+    listFilter = listApi.where((element) => element['category'].toString().contains(txt.toString()) || element['price'].toString().contains(txt.toString())).toList();
     setState(() {
 
     });
@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Container(
                           color: ColorConst.headerColor,
                           child: Image.network(
-                              '${listApi[i]['image']}',
+                              '${listFilter[i]['image']}',
                             width: 80,
                             height: 60,
                           ),
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                                '${listApi[i]['title']}',
+                                '${listFilter[i]['title']}',
                               style: const TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600
@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(height: 20,),
                             Text(
-                              '${listApi[i]['category']}',
+                              '${listFilter[i]['category']}',
                               style: const TextStyle(
                                   color: Colors.grey,
                                 fontSize: 14
@@ -165,7 +165,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     RatingBar.builder(
-                                      initialRating: double.parse(listApi[i]['rating']['rate'].toString()).toDouble(),
+                                      initialRating: double.parse(listFilter[i]['rating']['rate'].toString()).toDouble(),
                                       minRating: 1,
                                       direction: Axis.horizontal,
                                       allowHalfRating: true,
@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(width: 2,),
                                     Text(
-                                      '(${listApi[i]['rating']['rate']})',
+                                      '(${listFilter[i]['rating']['rate']})',
                                       style: const TextStyle(
                                           color: Colors.grey,
                                           fontSize: 13
@@ -189,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     const SizedBox(width: 5,),
                                     Text(
-                                      '(${listApi[i]['rating']['count']})',
+                                      '(${listFilter[i]['rating']['count']})',
                                       style: const TextStyle(
                                           color: Colors.grey,
                                           fontSize: 13
@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                                 Text(
-                                  '＄${listApi[i]['price']}',
+                                  '＄${listFilter[i]['price']}',
                                   style: const TextStyle(
                                       color: Colors.black87,
                                       fontSize: 15,
