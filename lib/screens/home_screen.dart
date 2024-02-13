@@ -221,8 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
    Future<http.Response> apiList() async {
-    final http.Response response = await http.get(Uri.parse('https://fakestoreapi.com/products?limit=5'),
-    );
+    final http.Response response = await http.get(Uri.parse('https://fakestoreapi.com/products?limit=5'),);
     if (response.statusCode == 200) {
       http.Response document = response;
       return document;
